@@ -1,6 +1,6 @@
 <h1 class="page-header">Mantenimiento de Clientes</h1>
 <p>Sistema Web v1.0</p>
-<a class="btn btn-primary pull-right" href="index.php?controller=clienteController&action=registrar">Agregar</a>
+<a class="btn btn-primary pull-right" href="index.php?controller=ClienteController&action=registrar">Agregar</a>
 <br><br><br>
 <table class="table  table-striped  table-hover" id="tabla">
     <thead>
@@ -15,20 +15,21 @@
         </tr>
     </thead>
     <tbody>
-        <?php $listaClientes = $this->modelo->listasClientes();
-          foreach ($listaClientes as $posicion => $cliente):
+        <?php
+          foreach($listaClientes as $posicion => $cliente):
         ?>
         <tr>
-            <td><?=$cliente['dni'];?></td>
-            <td><?=$cliente['Nombre'];?></td>
-            <td><?=$cliente['Apellido'];?></td>
-            <td><?=$cliente['Correo'];?></td>
-            <td><?=$cliente['Telefono'];?></td>
+            <td><?=$cliente->getDni();?></td>
+            <td><?=$cliente->getNombre()?></td>
+            <td><?=$cliente->getApellido();?></td>
+            <td><?=$cliente->getCorreo();?></td>
+            <td><?=$cliente->getTelefono();?></td>
             <td>
                 <a class="btn btn-warning" href="">Editar</a>
             </td>
             <td>
-                <a  class="btn btn-danger" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="">Eliminar</a>
+                <a  class="btn btn-danger" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" 
+                    href="index.php?controller=ClienteController&action=eliminar&id=<?=$cliente->getId();?>">Eliminar</a>
             </td>
         </tr>
         <?php endforeach; ?>
